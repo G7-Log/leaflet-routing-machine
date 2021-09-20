@@ -118,6 +118,7 @@
 
 			if (wp.latLng && (force || !wp.name)) {
 				wpCoords = this.options.waypointNameFallback(wp.latLng);
+				var properties; //ALTERAÇÃO
 				if (this.options.geocoder && this.options.geocoder.reverse) {
 					this.options.geocoder.reverse(wp.latLng, 67108864 /* zoom 18 */, function(rs) {
 						if (rs.length > 0 && rs[0].center.distanceTo(wp.latLng) < this.options.maxGeocoderTolerance) {
@@ -125,11 +126,14 @@
 						} else {
 							wp.name = wpCoords;
 						}
+						if (rs.length > 0 && rs[0].properties) {  //ALTERAÇÃO - IF INTEIRO
+                            properties = rs[0].properties;
+                        }
 						this._update();
 					}, this);
 				} else {
 					wp.name = wpCoords;
-					this._update();
+					this._update(properties); //ALTERAÇÃO
 				}
 			}
 		},
@@ -140,11 +144,11 @@
 			selectInputText(input);
 		},
 
-		_update: function() {
+		_update: function(properties) {
 			var wp = this._waypoint,
 			    value = wp && wp.name ? wp.name : '';
 			this.setValue(value);
-			this.fire('reversegeocoded', {waypoint: wp, value: value});
+			this.fire('reversegeocoded', {waypoint: wp, value: value, properties: properties});  //ALTERAÇÃO
 		}
 	});
 })();

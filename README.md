@@ -66,3 +66,5 @@ require('leaflet-routing-machine');
 LRM attaches itself onto `L`.
 
 __Go to the [Leaflet Routing Machine site](http://www.liedman.net/leaflet-routing-machine/) for more information, demos, tutorials and more.__
+
+Alteração G7

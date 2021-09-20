@@ -154,13 +154,15 @@
 				this._focusGeocoder(i + 1);
 				this.fire('waypointgeocoded', {
 					waypointIndex: i,
-					waypoint: e.waypoint
+					waypoint: e.waypoint,
+					resposta: e.value.properties //ALTERAÇÃO
 				});
 			}, this)
 			.on('reversegeocoded', function(e) {
 				this.fire('waypointgeocoded', {
 					waypointIndex: i,
-					waypoint: e.waypoint
+					waypoint: e.waypoint,
+					resposta: e.properties //ALTERAÇÃO
 				});
 			}, this);
 
