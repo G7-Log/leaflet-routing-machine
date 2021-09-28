@@ -129,7 +129,7 @@
 						if (rs.length > 0 && rs[0].properties) {  //ALTERAÇÃO - IF INTEIRO
                             properties = rs[0].properties;
                         }
-						this._update();
+						this._update(properties); // ALTERAÇÃO
 					}, this);
 				} else {
 					wp.name = wpCoords;
@@ -144,7 +144,7 @@
 			selectInputText(input);
 		},
 
-		_update: function(properties) {
+		_update: function(properties) { // ALTERAÇÃO
 			var wp = this._waypoint,
 			    value = wp && wp.name ? wp.name : '';
 			this.setValue(value);
